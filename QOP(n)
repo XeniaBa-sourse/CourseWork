@@ -33,18 +33,15 @@ gap> f3:=function(n)
 >          Add(a,i);od;od; return a; fi;end;
 
 gap> f4:=function(n)
-> local i,a,b,e,qop,P,P2,p1;
-> a:=f3(n); if IsString(a) then return a;
+> local i,a,b,e,qop,P,P2,j,p1;
+> a:=f3(n);
+> if IsString(a) then return a; 
 > else
-> b:=[]; for i in a do
+>    b:=[]; for i in a do
 >       if IsDuplicateFree(i) then
->               Add(b,i);fi;od;
-> e:=[]; for i in b do
->       if (Product(i mod 2)=1)=true then
->               Add(e,i); fi;od;
-> qop:=[]; for i in e do
->       P:=Product(i);
->       p1:=RootInt(P);
->       P2:=p1^2;
->       if P=P2 then Add(qop,i); fi;od;
-> return qop;fi; end;
+>           if (Product (i mod 2)=1)=true then
+>               P:=Product(i);
+>               p1:=RootInt(P); 
+>               P2:=p1^2; 
+>               if P=P2 then Add(b,i); fi; fi; fi; od;
+> return b;fi;end;
