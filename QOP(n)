@@ -33,7 +33,7 @@ gap> f3:=function(n)
 >          Add(a,i);od;od; return a; fi;end;
 
 gap> f4:=function(n)
-> local i,a,b,e,qop,P,P2,j,p1;
+> local i,a,qop,P,P2,p1;
 > a:=f3(n);
 > if IsString(a) then return a; 
 > else
