@@ -2,7 +2,7 @@ gap> f:=function(n)
 > local l,i,a;
 > l:=[];
 > a:="Input natural number";
-> if IsPosInt(n) = false then return a;
+> if IsPosInt(n)=false then return a;
 > else
 >       for i in [1..RootInt(n)] do
 >               l[i]:=i; od; return l; fi;end;
@@ -13,35 +13,37 @@ gap> f2:=function(n)
 > if IsString(c) then return c;
 > else
 >       for i in c do
->       e:=[];    
->          if i mod 4 = n mod 4 then
->               for j in [1..i] do 
->                      Add(e,1);od; 
->           Add (s,e);fi;od;
+>               e:=[];
+>               if i mod 4 = n mod 4 then
+>               for j in [1..i] do
+>                       Add(e,1);od;
+>               Add(s,e); fi;od;
 >       for i in s do
->           p:=Partitions(n,Length(i)); 
->           Add (pa,p);od;return pa; fi;end;
+>               p:=Partitions(n,Length(i)); Add(pa,p); od; return pa; fi;end;
 
 gap> f3:=function(n)
 > local a,b,i,j;
 > a:=[]; b:=f2(n);
 > if IsString(b) then return b;
 > else
->    for i in b do
->       for j in i do
->          i:=j;
->          Add(a,i);od;od; return a; fi;end;
+>       for i in b do
+>               for j in i do
+>                       i:=j;
+>                       Add(a,i);od;od;return a; fi
+> ; end;
 
 gap> f4:=function(n)
 > local i,a,qop,P,P2,p1;
 > a:=f3(n);
-> if IsString(a) then return a; 
+> if IsString(a) then return a;
 > else
->    b:=[]; for i in a do
->       if IsDuplicateFree(i) then
->           if (Product (i mod 2)=1)=true then
->               P:=Product(i);
->               p1:=RootInt(P); 
->               P2:=p1^2; 
->               if P=P2 then Add(b,i); fi; fi; fi; od;
-> return b;fi;end;
+>       qop:=[];
+>       for i in a do
+>               if IsDuplicateFree(i) then
+>                       if (Product(i mod 2)=1)=true then
+>                               P:=Product (i);
+>                               p1:=RootInt(P);
+>                               P2:=p1^2;
+>                               if P=P2 then Add(qop,i); fi;fi;fi;od;
+>       return qop; fi;end;
+
